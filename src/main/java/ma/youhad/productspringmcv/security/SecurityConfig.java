@@ -39,12 +39,16 @@ public class SecurityConfig {
         return http
                 // default login formula
                 .formLogin(Customizer.withDefaults())
-                //  all request with /index need USER authentication
-                .authorizeHttpRequests(authr ->authr.requestMatchers("/index/**").hasRole("USER"))
-                //  all request with /save or /delete need USER ADMIN
-                .authorizeHttpRequests(authr ->authr.requestMatchers("/save**/**", "/delete/**").hasRole("ADMIN"))
+                //  all request with /user need USER authentication
+                .authorizeHttpRequests(authr ->authr.requestMatchers("/user/**").hasRole("USER"))
+                //  all request with /admin need ADMIN authentication
+                .authorizeHttpRequests(authr ->authr.requestMatchers("/admin/**").hasRole("ADMIN"))
+                // public authentication
+                .authorizeHttpRequests(authr ->authr.requestMatchers("/public/**").permitAll())
                 // all request need authentication
                 .authorizeHttpRequests(authr ->authr.anyRequest().authenticated())
+                // if a user tried to access a place he is not authorized to enter, he will be  redirected to the page specified
+                .exceptionHandling(eh -> eh.accessDeniedPage("/notAuthorized"))
                 .build();
     }
 }
