@@ -3,6 +3,7 @@ package ma.youhad.productspringmcv.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -13,6 +14,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
     // to apply a hash algorithm to the password
@@ -38,13 +40,17 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 // default login formula
-                .formLogin(Customizer.withDefaults())
+                //.formLogin(Customizer.withDefaults())
+
+                // Customizable login formula
+                .formLogin(fl->fl.loginPage("/login").permitAll())
                 //  all request with /user need USER authentication
-                .authorizeHttpRequests(authr ->authr.requestMatchers("/user/**").hasRole("USER"))
+                .csrf(Customizer.withDefaults())
+                //.authorizeHttpRequests(authr ->authr.requestMatchers("/user/**").hasRole("USER"))
                 //  all request with /admin need ADMIN authentication
-                .authorizeHttpRequests(authr ->authr.requestMatchers("/admin/**").hasRole("ADMIN"))
+                //.authorizeHttpRequests(authr ->authr.requestMatchers("/admin/**").hasRole("ADMIN"))
                 // public authentication
-                .authorizeHttpRequests(authr ->authr.requestMatchers("/public/**").permitAll())
+                .authorizeHttpRequests(authr ->authr.requestMatchers("/public/**","/webjars/**").permitAll())
                 // all request need authentication
                 .authorizeHttpRequests(authr ->authr.anyRequest().authenticated())
                 // if a user tried to access a place he is not authorized to enter, he will be  redirected to the page specified
