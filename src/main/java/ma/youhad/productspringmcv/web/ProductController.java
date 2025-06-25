@@ -50,6 +50,14 @@ public class ProductController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/admin/update")
+    public String updateProduct(@RequestParam(name="id") Long id,Model model){
+        Product product = productRepository.findById(id).get();
+        model.addAttribute("product", product );
+        return "new-product";
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/admin/saveProduct")
     public String saveProduct(@Valid Product product, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){

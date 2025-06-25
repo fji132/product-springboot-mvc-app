@@ -34,6 +34,7 @@ public class SecurityConfig {
                 User.withUsername("user3").password(passwordEncoder().encode("1234")).roles("USER", "ADMIN").build()
         );
     }
+
     // Security Strategy: Resources that need to be protected;  require authentication.
     // Access to those resources should be authorized based on user roles, such as USER or ADMIN ...
     @Bean
