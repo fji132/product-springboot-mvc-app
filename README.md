@@ -135,4 +135,6 @@ spring.jpa.hibernate.ddl-auto=update
 - Add pagination/search features 
 - Deploy to cloud (Heroku, AWS, etc.)
 
-**Author**: YOUHAD AYOUB
+## ✅ Author 
+
+**YOUHAD AYOUB**
