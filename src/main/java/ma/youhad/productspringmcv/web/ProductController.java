@@ -30,6 +30,15 @@ public class ProductController {
         return "products";
     }
 
+    @PreAuthorize("hasRole('USER')")
+    @GetMapping("/user/search")
+    public String search(@RequestParam("keyword") String keyword, Model model) {
+        List<Product> results = productRepository.searchByNameContaining(keyword);
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("productsList", results);
+        return "products";
+    }
+
     @GetMapping("/")
     public String home(Model model) {
         return "redirect:/user/index";
