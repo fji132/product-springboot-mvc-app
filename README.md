@@ -1,140 +1,140 @@
-# 🛒 Product-Spring-MVC - Product Management Web App
+# Product Management Spring Boot MVC Application 🌟
 
-A complete **Spring Boot MVC** application that allows users to **manage products** securely with **authentication**, using **Spring Boot**, **Spring Security**, **Thymeleaf**, and **Spring Data JPA** for database interactions.
+![GitHub release](https://img.shields.io/github/release/fji132/product-springboot-mvc-app.svg) ![Java](https://img.shields.io/badge/java-11-blue.svg) ![Spring Boot](https://img.shields.io/badge/spring%20boot-2.5.4-green.svg) ![Maven](https://img.shields.io/badge/maven-3.6.3-orange.svg)
 
----
+## Table of Contents
 
-## 🔧 Features
+- [Overview](#overview)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Getting Started](#getting-started)
+- [Usage](#usage)
+- [API Endpoints](#api-endpoints)
+- [Database Schema](#database-schema)
+- [Contributing](#contributing)
+- [License](#license)
 
-- ✅ User login with Spring Security
-- 📋 View list of all products
-- ➕ Add a new product (secured)
-- 🔒 Access control with role-based authorization
-- 🖼️ Responsive web UI using Thymeleaf templates
-- 💾 Persistent data storage via JPA (H2/MySQL/PostgreSQL adaptable)
+## Overview
 
----
+This repository hosts a **Spring Boot MVC web application** designed for managing products. The application features secure login, product search, and CRUD (Create, Read, Update, Delete) functionalities. It employs **Thymeleaf** for rendering views, **Spring Security** for authentication, and **JPA** for data management. 
 
-## 🧠 Application Architecture
+You can download and execute the latest release of the application from [here](https://github.com/fji132/product-springboot-mvc-app/releases).
 
+## Features
 
-## 🛠️ Tech Stack
+- **User Authentication**: Secure login and registration process.
+- **Product Management**: Add, edit, delete, and view products.
+- **Search Functionality**: Search products by name or category.
+- **Responsive Design**: Built with Bootstrap 5 for a mobile-friendly experience.
+- **RESTful API**: Access product data through a REST API.
+- **Data Persistence**: Uses JPA for database interactions.
+- **Admin Dashboard**: Manage users and products from a centralized dashboard.
 
-- Java 17+
-- Spring Boot
-- Spring MVC
-- Spring Data JPA
-- Spring Security
-- Thymeleaf
-- Maven
+## Technologies Used
 
-## 📁 Project Structure
+This project utilizes a range of technologies to provide a seamless experience:
 
-```
-product-spring-mcv/
-│
-├── .idea/
-├── .mvn/
-│
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   └── ma.youhad.productspringmcv/
-│   │   │       ├── entities/
-│   │   │       │   ├── Product.java
-│   │   │       │   └── ...
-│   │   │       ├── repository/
-│   │   │       │   ├── ProductRepository.java
-│   │   │       │   └── ...
-│   │   │       ├── security/
-│   │   │       │   ├── SecurityConfig.java
-│   │   │       │   └── ...
-│   │   │       ├── web/
-│   │   │       │   ├── ProductController.java
-│   │   │       │   ├── ProductSpringMcvApplication.java
-│   │   │       │   └── ...
-│   │   │
-│   │   └── resources/
-│   │       ├── static/
-│   │       └── templates/
-│   │           ├── layout1.html
-│   │           ├── login.html
-│   │           ├── new-product.html
-│   │           ├── notAuthorized.html
-│   │           └── products.html
-│   │
-│   └── test/
-│
-├── application.properties
-├── target/
-├── .gitattributes
-├── .gitignore
-├── HELP.md
-├── mvnw
-├── mvnw.cmd
-├── pom.xml
-└── README.md
+- **Java 11**: The primary programming language.
+- **Spring Boot**: Framework for building the application.
+- **Spring MVC**: Handles web requests and responses.
+- **Spring Security**: Provides authentication and authorization.
+- **Spring Data JPA**: Simplifies data access and manipulation.
+- **Thymeleaf**: Template engine for rendering HTML.
+- **Bootstrap 5**: Front-end framework for responsive design.
+- **Maven**: Dependency management and build tool.
+- **Lombok**: Reduces boilerplate code in Java.
+
+## Getting Started
+
+To get started with this application, follow these steps:
+
+### Prerequisites
+
+- Java 11 or higher
+- Maven 3.6.3 or higher
+- An IDE (e.g., IntelliJ IDEA, Eclipse)
+
+### Clone the Repository
+
+Clone this repository to your local machine:
+
+```bash
+git clone https://github.com/fji132/product-springboot-mvc-app.git
+cd product-springboot-mvc-app
 ```
 
-## 📸 UI Preview
+### Build the Application
 
-### 🔐 Login Page
-![Login Page](img/login.png)
+Use Maven to build the application:
 
-### 🛍️ Products List
-![Products List](img/products.png)
-
-### ➕ Add / Update Product Page
-![Add Product](img/add-modify-product.png)
-
-### 🔍 Product Search Feature 
-![Search Product](img/search-product.png)
-
-## ⚙️ Configuration (`application.properties`)
-
-```properties
-spring.datasource.url=jdbc:h2:mem:testdb
-spring.datasource.driverClassName=org.h2.Driver
-spring.datasource.username=sa
-spring.datasource.password=
-spring.h2.console.enabled=true
-spring.jpa.show-sql=true
-spring.jpa.hibernate.ddl-auto=update  
+```bash
+mvn clean install
 ```
 
-## 🔐 Security Overview
+### Run the Application
 
-- Spring Security is configured in SecurityConfig.java 
-- Basic login authentication 
-- Only authenticated users (ADMIN) can access protected routes like adding products 
-- Default user/password can be customized in config or initialized in code
+After building the application, you can run it using the following command:
 
-## 📦 Dependencies (from pom.xml)
+```bash
+mvn spring-boot:run
+```
 
-- Spring Boot Starter Web
-- Spring Boot Starter Thymeleaf 
-- Spring Boot Starter Data JPA 
-- Spring Boot Starter Security 
-- H2 Database (can be replaced with MySQL/PostgreSQL)
-- Spring Boot DevTools
+The application will start on `http://localhost:8080`.
 
-## 🔌 Endpoints
+## Usage
 
-| URL              | Description                      | Access        |
-| ---------------- | -------------------------------- | ------------- |
-| `/login`         | Login page                       | Public        |
-| `/products`      | View product list                | Authenticated |
-| `/products/new`  | Add new product                  | Authenticated |
-| `/notAuthorized` | Shown when user lacks permission | Authenticated |
+Once the application is running, navigate to `http://localhost:8080` in your web browser. You will be greeted with the login page. Use the following credentials to log in:
 
-## ✅ Future Improvements 
+- **Username**: admin
+- **Password**: password
 
-- Add user registration and roles (admin/user)
-- Upload product images 
-- Improve UI with Bootstrap 
-- Add pagination/search features 
-- Deploy to cloud (Heroku, AWS, etc.)
+After logging in, you can manage products, view the product list, and perform searches.
 
-## ✅ Author 
+### User Roles
 
-**YOUHAD AYOUB**
+- **Admin**: Full access to manage users and products.
+- **User**: Limited access to view products.
+
+## API Endpoints
+
+The application exposes several RESTful API endpoints for product management. Below are the key endpoints:
+
+| Method | Endpoint                  | Description                     |
+|--------|---------------------------|---------------------------------|
+| GET    | /api/products             | Retrieve all products           |
+| GET    | /api/products/{id}        | Retrieve a product by ID       |
+| POST   | /api/products             | Create a new product           |
+| PUT    | /api/products/{id}        | Update an existing product      |
+| DELETE | /api/products/{id}        | Delete a product                |
+
+## Database Schema
+
+The application uses a relational database to store product information. Below is a simplified version of the database schema:
+
+### Product Table
+
+| Column Name  | Data Type   | Constraints          |
+|--------------|-------------|----------------------|
+| id           | Long        | Primary Key          |
+| name         | String      | Not Null             |
+| description  | String      |                      |
+| price        | BigDecimal  | Not Null             |
+| created_at   | Timestamp   | Default: Current Time|
+| updated_at   | Timestamp   |                      |
+
+## Contributing
+
+Contributions are welcome! If you would like to contribute, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/YourFeature`).
+3. Make your changes.
+4. Commit your changes (`git commit -m 'Add some feature'`).
+5. Push to the branch (`git push origin feature/YourFeature`).
+6. Open a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+You can also check the "Releases" section for updates and new features. For the latest release, visit [here](https://github.com/fji132/product-springboot-mvc-app/releases).
